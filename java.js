@@ -80,3 +80,17 @@ generator.addEventListener("click", function() {
     document.getElementById("displayer").innerHTML = displayedPassword;
  
 })
+
+document.querySelector("#displayer").addEventListener("displayer", async event => {
+    if (!navigator.clipboard) {
+      // Clipboard API not available
+      return
+    }
+    const text = event.target.innerText
+    try {
+      await navigator.clipboard.writeText(text)
+      event.target.textContent = 'Copied to clipboard'
+    } catch (err) {
+      console.error('Failed to copy!', err)
+    }
+  })
